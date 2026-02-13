@@ -1,6 +1,11 @@
 pipeline{
     agent any
     stages {
+     stage('Checkout Code') {
+            steps {
+                checkout scm
+            }
+     }
      stage ("CI - Create Docker images"){
         steps {
             bat ''' docker build -t kiruthi-image .
@@ -23,10 +28,10 @@ pipeline{
   }
   post {
     success{
-        "Pipeline success"
+        echo 'pipeline success'
     }
     failure{
-        "pipeline fails"
+        echo 'pipeline fails'
     }
   }
 
