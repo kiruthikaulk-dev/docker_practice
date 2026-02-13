@@ -1,0 +1,34 @@
+pipeline{
+    agent any
+    stages {
+     stage ("CI - Create Docker images"){
+        steps {
+            bat ''' docker build -t kiruthi-image .
+            '''
+        }
+     }
+     stage ("Docker-Compose"){
+        steps{
+            bat ''' docker compose up -d
+            '''
+        }
+     }
+     stage ("push docker image to dockerhub" ){
+      steps{
+        bat ''' docker tag kiruthi-image kiruthika91/docker-webhost:kiruthi-image  
+        docker push kiruthika91/docker-webhost:kiruthi-image
+        '''
+      }
+    }
+  }
+  post {
+    success{
+        "Pipeline success"
+    }
+    failure{
+        "pipeline fails"
+    }
+  }
+
+    
+}

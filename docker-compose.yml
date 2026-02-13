@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+ webserver-services:
+  container_name: nginx-container-test
+  build: .
+  restart: always
+  volumes:
+   - ./Log_path:/var/log/nginx
+  networks:
+   - nginx_network
+  ports:
+   - "8055:80" 
+networks:
+ nginx_network:
+    driver: bridge
