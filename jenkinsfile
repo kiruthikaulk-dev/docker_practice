@@ -18,22 +18,7 @@ pipeline{
             '''
         }
      }
-     stage ("push docker image to dockerhub" ){
-      steps{
-        withCredentials([usernamePassword(
-        credentialsId: 'dockerhub-creds',
-        usernameVariable: 'DOCKER_USER',
-        passwordVariable: 'DOCKER_PASS'
-    )]) 
-      {
-        bat ''' docker tag kiruthi-image kiruthika91/docker-webhost:kiruthi-image  
-        docker push kiruthika91/docker-webhost:kiruthi-image
-       
-        '''
-      }
-      }
     }
-  }
   post {
     success{
         echo 'pipeline success'
