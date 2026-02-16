@@ -25,9 +25,12 @@ pipeline{
         usernameVariable: 'DOCKER_USER',
         passwordVariable: 'DOCKER_PASS'
     )]) 
+      {
         bat ''' docker tag kiruthi-image kiruthika91/docker-webhost:kiruthi-image  
         docker push kiruthika91/docker-webhost:kiruthi-image
+       
         '''
+      }
       }
     }
   }
